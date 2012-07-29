@@ -29,7 +29,7 @@ class Poll < Ohm::Model
 
   def start
     self.started_at = Time.now.to_i
-    self.ending_at = Time.now.to_i + 20
+    self.ending_at = Time.now.to_i + 15
     self.active = true
     self.save
     client = Faye::Client.new('http://localhost:9292/fayex')

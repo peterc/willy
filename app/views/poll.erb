@@ -18,6 +18,9 @@
 	  </div>
 	<% end %>
   </div>
+  <% unless @poll.finished? %>
+  	<div class="wait">Wait for voting to begin..</div>
+  <% end %>
 <% end %>
 
 <div class="answers" style="display: none; <%= 'display: block' if @owner || @poll.finished? %>">

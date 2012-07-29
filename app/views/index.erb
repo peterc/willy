@@ -1,12 +1,12 @@
  	<form id="questionForm" method="post" action="/poll">
   	
   		<p>Question</p>
-  		<input type="text" name="question" id="question" value="" required />
+  		<input type="text" placeholder="What's your favorite color?" name="question" id="question" value="" required />
   		
-  		<p>Answers</p>
-  		<input type="text" name="answer[]" value=""  required />
-  		<input type="text" name="answer[]" value=""  required />
-  		<button id="remove" style="display: none;">Remove - </button>
+  		<p>Choices</p>
+  		<input type="text" placeholder="Red" name="answer[]" value=""  required />
+  		<input type="text" placeholder="Blue" name="answer[]" value=""  required />
+  		<!-- button id="remove" style="display: none;">Remove - </button -->
 
   		<button id="add">Add + </button>
   	
@@ -17,9 +17,9 @@
   $(document).ready(function() {
 
     	$('#add').click( function(e) {
-    		e.preventDefault;
-    		$('<input type="text" name="answer[]" value="" class="optionalAnswer"  required />').insertBefore('#remove');
-    		$('#remove').show();
+    		e.preventDefault();
+    		$('<input type="text" name="answer[]" value="" class="optionalAnswer"  required />').insertBefore('#add');
+    		//$('#remove').show();
     	});
 
 

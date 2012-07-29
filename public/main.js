@@ -26,6 +26,7 @@ var startTimer = function() {
 	updateTimer();
 	$('.timer').show();
 	timer = setInterval(updateTimer, 1000);
+	$('.wait').hide();
 };
 
 $('#start').click(function() {
