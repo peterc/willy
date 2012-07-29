@@ -1,0 +1,30 @@
+<h2><%= @poll.question %></h2>
+
+<% @poll.answers.each do |answer| %>
+  <div class="answer">
+  	<button class="vote" data-answerid="<%= answer.id %>"><%= answer.text %></button>
+  </div>
+<% end %>
+
+<div id="debug"></div>
+
+<script src="/fayex/client.js"></script>
+<!-- script src="/main.js"></script -->
+<script>
+  var client = new Faye.Client('/fayex');
+  ich.addTemplate('vote', "<div>{{poll_id}}-{{answer_id}}</div>");
+  
+  $('button.vote').click(function() {
+  	console.log($(this).data('answerid'));
+  	client.publish('/votes', {
+   	  poll_id: '<%= @poll.id %>',
+   	  answer_id: $(this).data('answerid')
+  	});
+  	console.log('hmm');
+  });
+  
+  client.subscribe('/votes', function(vote) {
+   	$('#debug').append(ich.vote(vote));
+  });
+  
+</script>

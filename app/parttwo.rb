@@ -1,9 +1,11 @@
 Thread.new do
   client = Faye::Client.new('http://localhost:9292/fayex')
-  client.subscribe('/messages') do |message|
-    puts message.inspect
+  client.subscribe('/votes') do |message|
+    File.open('/tmp/log.log', 'a') { |f| f.puts message.inspect }
   end
+  File.open('/tmp/log.log', 'a') { |f| f.puts "balls" }
 end
+
 
 #Thread.new do
 #  client = Faye::Client.new('http://localhost:9292/fayex')
@@ -12,3 +14,4 @@ end
 #    client.publish('/messages', 'text' => 'Hellxxxo world')
 #  end
 #end
+

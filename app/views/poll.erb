@@ -1,0 +1,44 @@
+<% if @owner %>
+  <h2 class="url">http://no.gd/poll/<%= @poll.id %></h2>
+<% end %>
+
+<% if @owner && @poll.ready_to_start? %>
+  <div class="activator"><button id="start">Start poll!</button></div>
+<% end %>
+
+<div class="question">
+  <%= @poll.question %>
+</div>
+
+<% if !@owner %>
+  <div class="buttons" style="<%= 'display: none' if @poll.finished? %>">
+	<% @poll.answers.each do |answer| %>
+	  <div class="answer">
+	  	<button class="vote" data-answerid="<%= answer.id %>"><%= answer.text %></button>
+	  </div>
+	<% end %>
+  </div>
+<% end %>
+
+<div class="answers" style="display: none; <%= 'display: block' if @owner || @poll.finished? %>">
+  <% @poll.answers.each do |answer| %>
+    <div class="answer" id="answer-<%= answer.id %>">
+    	<div class="text"><%= answer.text %></div>
+    	<div class="bar"></div>
+    	<div class="votes"><%= answer.votes.size %></div>
+    </div>
+  <% end %>
+</div>
+
+<div class="timer" style="<%= 'display: none' unless @poll.active? %>"><div class="value"></div> seconds left</div>
+
+<script>
+  <% if @owner %>var token = '<%= @poll.token %>';<% end %>
+  var poll_id = <%= @poll.id %>;
+  var active = <%= @poll.active %>;
+  var seconds_remaining = <%= @poll.seconds_remaining %>;
+  var owner = <%= !!@owner %>;
+</script>
+
+<script src="/fayex/client.js"></script>
+<script src="/main.js"></script>
