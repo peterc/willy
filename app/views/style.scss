@@ -1,0 +1,10 @@
+body {
+	font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	font-size: 16px;
+}
+
+body > header, #main, body > footer {
+	margin: 8px auto;
+	width: 960px;
+	padding: 0 12px;
+}

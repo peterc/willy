@@ -1,0 +1,5 @@
+#faye.bind(:publish) do |client_id, channel, data|
+#  p client_id
+#  p channel
+#  p data
+#end

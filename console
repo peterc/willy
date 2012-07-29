@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+$: << File.expand_path('../app', __FILE__)
+
+if e = ARGV.shift
+  ENV['RACK_ENV'] = e
+end
+
+require 'willy'
+require 'irb'
+
+IRB.start
